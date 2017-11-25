@@ -10,13 +10,10 @@ else()
     endif()
 endif()
 
-add_subdirectory(vendor/libccd)
+add_subdirectory(vendor/sdl)
 
-#include_directories(
-#    vendor/libccd/src/
-#    vendor/libccd/src/ccd)
-
-#file(GLOB VENDOR_HEADERS vendor/libccd/src/ccd/config.h)
+include_directories(
+    vendor/sdl/include/)
 
 file(GLOB PROJECT_SOURCES main.cpp)
 
@@ -35,7 +32,7 @@ add_definitions(-DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_CONFIGS}
     ${VENDOR_HEADERS} ${VENDOR_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} ccd)
+target_link_libraries(${PROJECT_NAME} SDL2)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
